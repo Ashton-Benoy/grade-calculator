@@ -1,31 +1,48 @@
-function calculateGrade() {
-  let subject1 = parseFloat(prompt("Enter marks for Subject 1:"));
-  let subject2 = parseFloat(prompt("Enter marks for Subject 2:"));
-  let subject3 = parseFloat(prompt("Enter marks for Subject 3:"));
-  let subject4 = parseFloat(prompt("Enter marks for Subject 4:"));
-  let subject5 = parseFloat(prompt("Enter marks for Subject 5:"));
+function calculate(operation) {
+  let num1 = parseFloat(document.getElementById("num1").value);
+  let num2 = parseFloat(document.getElementById("num2").value);
+  let result;
 
-  let total = subject1 + subject2 + subject3 + subject4 + subject5;
-  let average = total / 5;
-
-  let grade;
-  if (average >= 90) {
-    grade = "A+";
-  } else if (average >= 80) {
-    grade = "A";
-  } else if (average >= 70) {
-    grade = "B";
-  } else if (average >= 60) {
-    grade = "C";
-  } else if (average >= 50) {
-    grade = "D";
+  if (isNaN(num1) || isNaN(num2)) {
+    result = "Please enter both numbers.";
   } else {
-    grade = "F";
+    switch (operation) {
+      case "add":
+        result = num1 + num2;
+        break;
+      case "subtract":
+        result = num1 - num2;
+        break;
+      case "multiply":
+        result = num1 * num2;
+        break;
+      case "divide":
+        if (num2 === 0) {
+          result = "Cannot divide by zero.";
+        } else {
+          result = num1 / num2;
+        }
+        break;
+    }
   }
 
-  alert(
-    "Total Marks: " + total +
-    "\nAverage Marks: " + average.toFixed(2) +
-    "\nGrade: " + grade
-  );
+  document.getElementById("result").innerText = "Result: " + result;
+}
+
+function square() {
+  let num = parseFloat(document.getElementById("num1").value);
+  if (isNaN(num)) {
+    document.getElementById("result").innerText = "Enter a number in box 1.";
+  } else {
+    document.getElementById("result").innerText = "Result: " + (num * num);
+  }
+}
+
+function cube() {
+  let num = parseFloat(document.getElementById("num1").value);
+  if (isNaN(num)) {
+    document.getElementById("result").innerText = "Enter a number in box 1.";
+  } else {
+    document.getElementById("result").innerText = "Result: " + (num * num * num);
+  }
 }
